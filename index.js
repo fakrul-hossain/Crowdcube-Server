@@ -79,7 +79,12 @@ async function run() {
     });
 
     // Get campaigns created by a specific user
-  
+    app.get('/myCampaigns', async (req, res) => {
+      const email = req.query.email;
+      const query = { userEmail: email };
+      const campaigns = await crowdCubeCollection.find(query).toArray();
+      res.send(campaigns);
+    });
 
     // Get donations made by a specific user
     app.get('/myDonation', async (req, res) => {
