@@ -87,7 +87,7 @@ async function run() {
     });
 
     // Get donations made by a specific user
-    app.get('/myDonations', async (req, res) => {
+    app.get('/myDonation', async (req, res) => {
       const email = req.query.email;
       const query = { userEmail: email };
       const donations = await donationCollection.find(query).toArray();
