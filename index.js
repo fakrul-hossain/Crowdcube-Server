@@ -22,7 +22,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
 
     const crowdCubeCollection = client.db('crowdDB').collection('crowd');
     const donationCollection = client.db('crowdDB').collection('donations');
