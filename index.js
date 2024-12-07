@@ -93,7 +93,7 @@ async function run() {
       const donations = await donationCollection.find(query).toArray();
       res.send(donations);
     });
-
+    
     // Test the connection
     await client.db('admin').command({ ping: 1 });
     console.log('Connected successfully to MongoDB!');
@@ -104,7 +104,7 @@ async function run() {
 
 run().catch(console.dir);
 
-// Root route
+
 app.get('/', (req, res) => {
   res.send('Crowdcube server is running');
 });
