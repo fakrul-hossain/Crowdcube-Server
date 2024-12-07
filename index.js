@@ -54,7 +54,15 @@ async function run() {
     });
 
     // Update a campaign
-   
+    app.put('/campaigns/:id', async (req, res) => {
+      const id = req.params.id;
+      const updatedData = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = { $set: updatedData };
+      const result = await crowdCubeCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
     // Delete a campaign
     app.delete('/campaigns/:id', async (req, res) => {
       const id = req.params.id;
