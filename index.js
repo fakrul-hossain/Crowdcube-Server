@@ -39,11 +39,19 @@ async function run() {
     // Add a new campaign
     app.post('/campaigns', async (req, res) => {
       const campaign = req.body;
+      if (!campaign.userEmail) {
+        return res.status(400).send({ error: "User email is required" });
+      }
       const result = await crowdCubeCollection.insertOne(campaign);
       res.send(result);
     });
-
-   
+       // Get campaigns created by a specific user
+       app.get('/myCampaigns', async (req, res) => {
+        const email = req.query.email;
+        const query = { email: email.trim().toLowerCase() }; // Normalize email
+        const campaigns = await crowdCubeCollection.find(query).toArray();
+        res.send(campaigns);
+      });
 
     // Get campaign details by ID
     app.get('/campaigns/:id', async (req, res) => {
@@ -78,13 +86,7 @@ async function run() {
       res.send(result);
     });
 
-    // Get campaigns created by a specific user
-    app.get('/myCampaigns', async (req, res) => {
-      const email = req.query.email;
-      const query = { userEmail: email };
-      const campaigns = await crowdCubeCollection.find(query).toArray();
-      res.send(campaigns);
-    });
+
 
     // Get donations made by a specific user
     app.get('/myDonation', async (req, res) => {
