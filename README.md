@@ -32,6 +32,6 @@ This is the backend server for the **Crowdcube** crowdfunding platform. It provi
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/programming-hero-web-course2/b10-a10-server-side-fakrul-hossain
+   git https://github.com/fakrul-hossain/Crowdcube-Server
    cd crowdcube-server
 "# Crowdcube-Server" 
